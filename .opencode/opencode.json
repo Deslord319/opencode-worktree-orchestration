@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/schemas/opencode.json",
+  "agents": {
+    "plan": {
+      "description": "任务分解与批次编排",
+      "mode": "primary",
+      "prompt": "{file:.opencode/agents/plan.md}"
+    },
+    "reviewer": {
+      "description": "Gate Review",
+      "mode": "subagent",
+      "prompt": "{file:.opencode/agents/reviewer.md}"
+    }
+  },
+  "rules": [
+    ".opencode/rules/batch.md",
+    ".opencode/rules/claim.md"
+  ]
+}
