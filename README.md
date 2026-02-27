@@ -88,7 +88,7 @@ cp AGENTS.md /path/to/your/project/.opencode/AGENTS.md
 
 ### AGENTS.md
 
-推荐使用 `.opencode/AGENTS.md`（兼容 `AGENTS.md`）定义：
+使用 `.opencode/AGENTS.md` 定义：
 
 1. **文档索引** - 指向 Stories、规约、架构文档
 2. **当前任务** - Orchestrator Agent 动态更新
@@ -106,7 +106,7 @@ cp AGENTS.md /path/to/your/project/.opencode/AGENTS.md
 
 | 类型    | 路径                    | 说明       |
 | ------- | ----------------------- | ---------- |
-| Stories | docs/RFC/006-stories.md | 任务定义   |
+| Stories | docs/RFC/006-microservices-implementation-stories.md | 任务定义   |
 | 规约    | forAgentOpenCode.md     | RFC-011    |
 | 架构    | docs/RFC/               | RFC 文档   |
 
@@ -148,7 +148,7 @@ Tab 键 → 选择 orchestrator
 
 新实例启动后自动：
 
-1. 读取 `.opencode/AGENTS.md`（或 `AGENTS.md`）认领任务
+1. 读取 `.opencode/AGENTS.md` 认领任务
 2. 按 Allowed Files 修改
 3. 满足 Exit Criteria
 4. 创建 PR
@@ -159,7 +159,7 @@ Tab 键 → 选择 orchestrator
 用户: 按照 RFC-006 实现 Phase 1
 
 Orchestrator Agent:
-1. 读取 docs/RFC/006-stories.md
+1. 读取 docs/RFC/006-microservices-implementation-stories.md
 2. 识别 Phase 1: [S1, S5]
 3. 创建 Issues: #101, #102
 4. 创建 Worktrees: wt-s1, wt-s5
@@ -187,21 +187,21 @@ Orchestrator Agent: 开始执行 Batch-2...
 
 ### 修改文档索引
 
-编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
+编辑 `.opencode/AGENTS.md`：
 
 ```markdown
 ## 文档索引
 
 | 类型    | 路径                    | 说明       |
 | ------- | ----------------------- | ---------- |
-| Stories | docs/RFC/006-stories.md | 任务定义   |
+| Stories | docs/RFC/006-microservices-implementation-stories.md | 任务定义   |
 | 规约    | forAgentOpenCode.md     | RFC-011    |
 | 架构    | docs/RFC/               | RFC 文档   |
 ```
 
 ### 修改禁止项
 
-编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
+编辑 `.opencode/AGENTS.md`：
 
 ```markdown
 ## 禁止项
@@ -211,7 +211,7 @@ rg -n "TEMP_|getattr\(.*\.side" backend/services
 
 ### 修改测试命令
 
-编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
+编辑 `.opencode/AGENTS.md`：
 
 ```markdown
 ## 常用命令
