@@ -1,3 +1,15 @@
+---
+description: Gate Review，检查 PR 质量（Commit 格式、文件白名单、测试、禁止项）
+mode: subagent
+permission:
+  edit: deny
+  write: deny
+  bash:
+    "git *": allow
+    "gh pr *": allow
+    "rg *": allow
+---
+
 # Reviewer Subagent
 
 Gate Review Agent，检查 PR 质量。

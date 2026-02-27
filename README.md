@@ -1,6 +1,14 @@
 # OpenCode Worktree Orchestration
 
-Plan Agent + Worktree + Issue + Gate 编排配置。
+Orchestrator Agent + Worktree + Issue + Gate 编排配置。
+
+## 角色架构
+
+| 位置              | Agent          | 职责           |
+| ----------------- | -------------- | -------------- |
+| 主会话            | `orchestrator` | 分解任务、创建 worktree、Gate Review |
+| Worktree 实例     | `build` (默认) | 执行具体开发任务 |
+| Subagent          | `reviewer`     | Gate Review 检查 |
 
 ## 安装
 
@@ -27,12 +35,12 @@ ocx add <registry>/opencode-worktree-orchestration
 ```
 .opencode/
 ├── agents/
-│   ├── plan.md       # Plan Agent 定义
-│   └── reviewer.md   # Reviewer Subagent 定义
+│   ├── orchestrator.md  # 编排 Agent (primary)
+│   └── reviewer.md      # Gate Review Agent (subagent)
 ├── rules/
-│   ├── batch.md      # 批次执行规约
-│   └── claim.md      # 任务认领规约
-└── opencode.json     # 配置入口
+│   ├── batch.md         # 批次执行规约
+│   └── claim.md         # 任务认领规约
+└── opencode.json        # 配置入口
 ```
 
 ### AGENTS.md
@@ -46,10 +54,10 @@ ocx add <registry>/opencode-worktree-orchestration
 
 ## 使用
 
-### 1. 切换到 Plan Agent
+### 1. 切换到 Orchestrator Agent
 
 ```
-Tab 键 → 选择 plan
+Tab 键 → 选择 orchestrator
 ```
 
 ### 2. 输入需求
@@ -58,7 +66,7 @@ Tab 键 → 选择 plan
 实现用户认证功能
 ```
 
-### 3. Plan Agent 自动
+### 3. Orchestrator Agent 自动
 
 1. 读取文档索引，找到相关 Stories
 2. 分析依赖，生成批次
@@ -125,7 +133,7 @@ ruff check backend/
 ```
 用户: 按照 RFC-006 实现 Phase 1
 
-Plan Agent:
+Orchestrator Agent:
 1. 读取 docs/RFC/006-stories.md
 2. 识别 Phase 1: [S1, S5]
 3. 创建 Issues: #101, #102
@@ -133,12 +141,12 @@ Plan Agent:
 5. 等待 PRs...
 
 [用户在 wt-s1 终端]
-新实例: 我已认领任务 Issue #101, Story S1
+Build Agent (worktree): 我已认领任务 Issue #101, Story S1
 ... 工作中 ...
-新实例: 创建 PR #201
+Build Agent: 创建 PR #201
 
 [主会话]
-Plan Agent:
+Orchestrator Agent:
   Batch-1 完成:
   | Story | Issue | PR   | Gate |
   | S1    | #101  | #201 | PASS |
@@ -147,7 +155,7 @@ Plan Agent:
   继续执行 Batch-2?
 
 用户: 继续
-Plan Agent: 开始执行 Batch-2...
+Orchestrator Agent: 开始执行 Batch-2...
 ```
 
 ## License

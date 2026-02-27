@@ -1,4 +1,15 @@
-# Plan Agent
+---
+description: 任务分解与批次编排，管理 Worktree + Issue + Gate 工作流
+mode: primary
+permission:
+  edit: deny
+  bash:
+    "*": ask
+    "git *": allow
+    "gh *": allow
+---
+
+# Orchestrator Agent
 
 任务分解与批次编排 Agent。
 
