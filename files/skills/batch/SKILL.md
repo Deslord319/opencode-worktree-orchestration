@@ -6,7 +6,7 @@
 
 ### 1. 读取 Story 定义
 
-从 AGENTS.md 的「文档索引」找到 Stories 文件，解析：
+从 `.opencode/AGENTS.md`（或 `AGENTS.md`）的「文档索引」找到 Stories 文件，解析：
 
 - Story ID
 - Story 名称
@@ -49,14 +49,14 @@ For each batch:
     2. 创建 Worktrees (并行)
        For each story in batch:
            a. git checkout -b story-<id>-#<issue>
-           b. 更新 AGENTS.md「当前任务」
+           b. 更新任务规则文件（`.opencode/AGENTS.md` 或 `AGENTS.md`）中的「当前任务」
            c. git commit && push
            d. git worktree add ../wt-<id>
            e. git checkout main
     
     3. 等待完成
        - 用户在各 worktree 终端启动 OpenCode
-       - 新实例读取 AGENTS.md 认领任务
+       - 新实例读取 `.opencode/AGENTS.md`（或 `AGENTS.md`）认领任务
        - 完成后创建 PR
     
     4. Gate Review

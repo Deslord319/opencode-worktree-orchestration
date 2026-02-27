@@ -55,8 +55,9 @@ git clone https://github.com/Deslord319/opencode-worktree-orchestration.git
 cp -r files/agent/* /path/to/your/project/.opencode/agent/
 cp -r files/skills/* /path/to/your/project/.opencode/skills/
 
-# 复制 AGENTS.md 模板
-cp AGENTS.md /path/to/your/project/
+# 复制 AGENTS.md 模板到 .opencode（推荐）
+mkdir -p /path/to/your/project/.opencode
+cp AGENTS.md /path/to/your/project/.opencode/AGENTS.md
 ```
 
 ## 组件说明
@@ -87,7 +88,7 @@ cp AGENTS.md /path/to/your/project/
 
 ### AGENTS.md
 
-项目根目录的 `AGENTS.md` 定义：
+推荐使用 `.opencode/AGENTS.md`（兼容 `AGENTS.md`）定义：
 
 1. **文档索引** - 指向 Stories、规约、架构文档
 2. **当前任务** - Orchestrator Agent 动态更新
@@ -147,7 +148,7 @@ Tab 键 → 选择 orchestrator
 
 新实例启动后自动：
 
-1. 读取 AGENTS.md 认领任务
+1. 读取 `.opencode/AGENTS.md`（或 `AGENTS.md`）认领任务
 2. 按 Allowed Files 修改
 3. 满足 Exit Criteria
 4. 创建 PR
@@ -186,7 +187,7 @@ Orchestrator Agent: 开始执行 Batch-2...
 
 ### 修改文档索引
 
-编辑 `AGENTS.md`：
+编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
 
 ```markdown
 ## 文档索引
@@ -200,7 +201,7 @@ Orchestrator Agent: 开始执行 Batch-2...
 
 ### 修改禁止项
 
-编辑 `AGENTS.md`：
+编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
 
 ```markdown
 ## 禁止项
@@ -210,7 +211,7 @@ rg -n "TEMP_|getattr\(.*\.side" backend/services
 
 ### 修改测试命令
 
-编辑 `AGENTS.md`：
+编辑 `.opencode/AGENTS.md`（或 `AGENTS.md`）：
 
 ```markdown
 ## 常用命令

@@ -7,24 +7,24 @@
 | 位置              | Agent        | 职责           |
 | ----------------- | ------------ | -------------- |
 | 主会话            | `orchestrator` | 分解任务、创建 worktree、Gate Review |
-| Worktree 实例     | `build` (默认) | 执行具体开发任务，读取 AGENTS.md 认领任务 |
+| Worktree 实例     | `build` (默认) | 执行具体开发任务，读取 .opencode/AGENTS.md（或 AGENTS.md）认领任务 |
 
 Worktree 中的实例使用默认的 `build` agent，拥有完整的文件操作权限。
 
 ## 启动后必须执行
 
-### Step 1: 读取 AGENTS.md
+### Step 1: 读取任务规则文件
 
 ```bash
-# AGENTS.md 位于项目根目录
-cat AGENTS.md
+# 优先读取 .opencode/AGENTS.md；不存在时回退 AGENTS.md
+[ -f .opencode/AGENTS.md ] && cat .opencode/AGENTS.md || cat AGENTS.md
 ```
 
 找到「当前任务」部分。
 
 ### Step 2: 解析任务信息
 
-从 AGENTS.md 获取：
+从 `.opencode/AGENTS.md`（或 `AGENTS.md`）获取：
 
 - `Issue`: #<number>
 - `Story`: <story-id>
@@ -47,7 +47,7 @@ cat AGENTS.md
 
 ### Step 4: 开始工作
 
-按照 AGENTS.md 中的规范和 Exit Criteria 开始工作。
+按照任务规则文件中的规范和 Exit Criteria 开始工作。
 
 ## Commit Message 格式
 

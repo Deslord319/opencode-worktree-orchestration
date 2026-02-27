@@ -23,7 +23,7 @@ permission:
 
 ### 1. 分析需求
 
-- 读取 AGENTS.md 的「文档索引」，找到 Story 定义文件
+- 读取 `.opencode/AGENTS.md`（若不存在则读取 `AGENTS.md`）的「文档索引」，找到 Story 定义文件
 - 识别涉及的 Stories
 - 分析依赖关系
 
@@ -58,9 +58,9 @@ Issue body 模板：
 <相关文档链接或路径>
 ```
 
-### 4. 更新 AGENTS.md
+### 4. 更新任务文件
 
-在分支上更新 AGENTS.md 的「当前任务」部分：
+在分支上更新 `.opencode/AGENTS.md`（若项目采用根目录规则文件则更新 `AGENTS.md`）的「当前任务」部分：
 
 ```markdown
 ## 当前任务
@@ -82,8 +82,8 @@ Issue body 模板：
 # 1. 创建分支
 git checkout -b story-<story-id>-#<issue-number>
 
-# 2. 更新并 commit AGENTS.md
-git add AGENTS.md
+# 2. 更新并 commit 任务规则文件
+git add .opencode/AGENTS.md AGENTS.md
 git commit -m "chore: 初始化 <story-id> 任务 (>#<issue-number>)"
 git push -u origin story-<story-id>-#<issue-number>
 
@@ -130,7 +130,7 @@ gh pr list --head "story-*" --json number,title,state
 
 - **bash**: `git *`, `gh *` 允许，其他 ask
 - **edit**: 禁止
-- **write**: 仅 `**/AGENTS.md` 允许
+- **write**: 仅 `**/.opencode/AGENTS.md` 或 `**/AGENTS.md` 允许
 
 ## 禁止
 
