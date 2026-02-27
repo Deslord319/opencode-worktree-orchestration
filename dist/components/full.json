@@ -1,0 +1,20 @@
+{
+  "name": "full",
+  "versions": {
+    "1.1.0": {
+      "name": "full",
+      "type": "ocx:bundle",
+      "description": "完整编排配置，包含 orchestrator + reviewer + batch + claim",
+      "files": [],
+      "dependencies": [
+        "orchestrator",
+        "reviewer",
+        "batch",
+        "claim"
+      ]
+    }
+  },
+  "dist-tags": {
+    "latest": "1.1.0"
+  }
+}

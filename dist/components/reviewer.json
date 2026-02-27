@@ -1,0 +1,33 @@
+{
+  "name": "reviewer",
+  "versions": {
+    "1.1.0": {
+      "name": "reviewer",
+      "type": "ocx:agent",
+      "description": "Gate Review Agent，检查 PR 质量（Commit 格式、文件白名单、测试、禁止项）",
+      "files": [
+        "agent/reviewer.md"
+      ],
+      "dependencies": [],
+      "opencode": {
+        "agent": {
+          "reviewer": {
+            "mode": "subagent",
+            "permission": {
+              "edit": "deny",
+              "write": "deny",
+              "bash": {
+                "git *": "allow",
+                "gh pr *": "allow",
+                "rg *": "allow"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "dist-tags": {
+    "latest": "1.1.0"
+  }
+}

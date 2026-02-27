@@ -1,0 +1,36 @@
+{
+  "name": "orchestrator",
+  "versions": {
+    "1.1.0": {
+      "name": "orchestrator",
+      "type": "ocx:agent",
+      "description": "任务分解与批次编排 Agent，管理 Worktree + Issue + Gate 工作流",
+      "files": [
+        "agent/orchestrator.md"
+      ],
+      "dependencies": [],
+      "opencode": {
+        "agent": {
+          "orchestrator": {
+            "mode": "primary",
+            "permission": {
+              "edit": "deny",
+              "bash": {
+                "*": "ask",
+                "git *": "allow",
+                "gh *": "allow"
+              }
+            }
+          }
+        },
+        "instructions": [
+          ".opencode/skills/batch/SKILL.md",
+          ".opencode/skills/claim/SKILL.md"
+        ]
+      }
+    }
+  },
+  "dist-tags": {
+    "latest": "1.1.0"
+  }
+}

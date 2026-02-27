@@ -1,0 +1,35 @@
+{
+  "name": "Worktree Orchestration",
+  "namespace": "wto",
+  "version": "1.1.0",
+  "author": "liuxilong",
+  "opencode": "1.0.0",
+  "ocx": "1.0.16",
+  "components": [
+    {
+      "name": "orchestrator",
+      "type": "ocx:agent",
+      "description": "任务分解与批次编排 Agent，管理 Worktree + Issue + Gate 工作流"
+    },
+    {
+      "name": "reviewer",
+      "type": "ocx:agent",
+      "description": "Gate Review Agent，检查 PR 质量（Commit 格式、文件白名单、测试、禁止项）"
+    },
+    {
+      "name": "batch",
+      "type": "ocx:skill",
+      "description": "批次执行规约，定义多 Story 批次执行的标准流程"
+    },
+    {
+      "name": "claim",
+      "type": "ocx:skill",
+      "description": "任务认领规约，定义新 Worktree 实例如何认领任务"
+    },
+    {
+      "name": "full",
+      "type": "ocx:bundle",
+      "description": "完整编排配置，包含 orchestrator + reviewer + batch + claim"
+    }
+  ]
+}

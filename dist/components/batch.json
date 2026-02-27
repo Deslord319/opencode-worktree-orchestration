@@ -1,0 +1,17 @@
+{
+  "name": "batch",
+  "versions": {
+    "1.1.0": {
+      "name": "batch",
+      "type": "ocx:skill",
+      "description": "批次执行规约，定义多 Story 批次执行的标准流程",
+      "files": [
+        "skills/batch/SKILL.md"
+      ],
+      "dependencies": []
+    }
+  },
+  "dist-tags": {
+    "latest": "1.1.0"
+  }
+}
