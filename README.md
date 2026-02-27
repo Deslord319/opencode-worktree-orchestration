@@ -38,12 +38,16 @@ ocx registry add https://raw.githubusercontent.com/Deslord319/opencode-worktree-
 # 3. 安装完整配置
 ocx add wto/full
 
-# 或单独安装组件
-ocx add wto/orchestrator  # 只安装 orchestrator agent
-ocx add wto/reviewer      # 只安装 reviewer subagent
-ocx add wto/batch         # 只安装批次执行规约
-ocx add wto/claim         # 只安装任务认领规约
+# 4. ⚠️ 重要：创建 OpenCode 配置
+cp .opencode/opencode.jsonc opencode.jsonc
+
+# 5. 重启 OpenCode，按 Tab 键选择 orchestrator
 ```
+
+> **为什么需要步骤 4？**
+> OCX 将配置写入 `.opencode/opencode.jsonc`，但 OpenCode 只读取项目根目录的 `opencode.jsonc`。
+> 我们已在 registry.jsonc 中添加了 postInstall 脚本，但 OCX 尚未支持此功能。
+> 这是一个临时解决方案。
 
 ### 方式 2: 手动安装
 
@@ -222,7 +226,33 @@ pytest backend/tests/ -v
 ruff check backend/
 ```
 
-## 开发 Registry
+## OCX 兼容性说明
+
+OCX 是一个优秀的包管理器，但目前与 OpenCode 的配置机制存在以下差异：
+
+| 工具 | 配置位置 | 安装后状态 |
+| ----- | --------- | ----------- |
+| **OCX** | `.opencode/opencode.jsonc` | ✅ 自动生成 |
+| **OpenCode** | `opencode.jsonc` (项目根) | ❌ 需手动复制 |
+
+### 当前工作流
+
+```bash
+# OCX 安装后需要手动步骤
+cp .opencode/opencode.jsonc opencode.jsonc
+```
+
+### 未来改进
+
+我们已提交以下提案以改善体验：
+
+1. **configTarget 字段** - 允许组件指定配置目标位置
+2. **postInstall 脚本** - 允许组件执行安装后脚本
+3. **自动复制** - OCX 自动检测并复制配置到项目根目录
+
+如果您有兴趣参与贡献，请关注以下 issue：
+- OCX Issue: 支持配置目标位置
+- OpenCode Issue: 读取 .opencode/opencode.jsonc 作为后备
 
 ```bash
 # 克隆仓库
