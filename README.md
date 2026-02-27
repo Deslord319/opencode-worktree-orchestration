@@ -38,16 +38,12 @@ ocx registry add https://raw.githubusercontent.com/Deslord319/opencode-worktree-
 # 3. 安装完整配置
 ocx add wto/full
 
-# 4. ⚠️ 重要：创建 OpenCode 配置
-cp .opencode/opencode.jsonc opencode.jsonc
-
-# 5. 重启 OpenCode，按 Tab 键选择 orchestrator
+# 4. 启动 OpenCode（请直接使用 opencode）
+opencode .
 ```
 
-> **为什么需要步骤 4？**
-> OCX 将配置写入 `.opencode/opencode.jsonc`，但 OpenCode 只读取项目根目录的 `opencode.jsonc`。
-> 我们已在 registry.jsonc 中添加了 postInstall 脚本，但 OCX 尚未支持此功能。
-> 这是一个临时解决方案。
+> 说明：`ocx add` 会生成 `.opencode/opencode.jsonc`，OpenCode 可直接读取该配置。
+> 当前不建议通过 `ocx opencode` 启动（已知在部分环境下 agent 解析为空）。
 
 ### 方式 2: 手动安装
 
@@ -228,31 +224,36 @@ ruff check backend/
 
 ## OCX 兼容性说明
 
-OCX 是一个优秀的包管理器，但目前与 OpenCode 的配置机制存在以下差异：
-
-| 工具 | 配置位置 | 安装后状态 |
-| ----- | --------- | ----------- |
-| **OCX** | `.opencode/opencode.jsonc` | ✅ 自动生成 |
-| **OpenCode** | `opencode.jsonc` (项目根) | ❌ 需手动复制 |
-
-### 当前工作流
+当前推荐链路：
 
 ```bash
-# OCX 安装后需要手动步骤
-cp .opencode/opencode.jsonc opencode.jsonc
+ocx add wto/full
+opencode .
 ```
 
-### 未来改进
+### 验证命令
 
-我们已提交以下提案以改善体验：
+```bash
+# 1) 组件安装状态
+ocx list -i --json
 
-1. **configTarget 字段** - 允许组件指定配置目标位置
-2. **postInstall 脚本** - 允许组件执行安装后脚本
-3. **自动复制** - OCX 自动检测并复制配置到项目根目录
+# 2) 组件与 registry 一致性（应为 hasChanges=false）
+ocx diff wto/orchestrator --json
+ocx diff wto/reviewer --json
+ocx diff wto/batch --json
+ocx diff wto/claim --json
 
-如果您有兴趣参与贡献，请关注以下 issue：
-- OCX Issue: 支持配置目标位置
-- OpenCode Issue: 读取 .opencode/opencode.jsonc 作为后备
+# 3) OpenCode 实际解析到的 agent（应包含 orchestrator/reviewer）
+opencode debug config | rg "orchestrator|reviewer|\\.opencode/skills"
+```
+
+### 常见问题
+
+```bash
+# 现象：ocx opencode debug config 中 agent 是 {}
+# 处理：改用 opencode 直接启动
+opencode .
+```
 
 ```bash
 # 克隆仓库
