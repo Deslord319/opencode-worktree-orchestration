@@ -13,6 +13,8 @@ Worktree 中的实例使用默认的 `build` agent，拥有完整的文件操作
 
 ## 启动后必须执行
 
+前提：当前实例必须由 `worktree_create` 创建，且在独立 worktree 目录中运行。
+
 ### Step 1: 读取任务规则文件
 
 ```bash

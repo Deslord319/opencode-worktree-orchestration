@@ -1,7 +1,7 @@
 {
   "name": "claim",
   "versions": {
-    "1.2.0": {
+    "1.2.1": {
       "name": "claim",
       "type": "ocx:skill",
       "description": "任务认领规约，定义新 Worktree 实例如何认领任务",
@@ -17,6 +17,6 @@
     }
   },
   "dist-tags": {
-    "latest": "1.2.0"
+    "latest": "1.2.1"
   }
 }

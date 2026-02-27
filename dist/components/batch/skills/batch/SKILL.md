@@ -46,16 +46,15 @@ For each batch:
        - 为 batch 中每个 story 创建 GitHub Issue
        - Issue body 包含 Allowed Files, Exit Criteria
     
-    2. 创建 Worktrees (并行)
+    2. 创建 Worktrees (并行, 强制独立上下文)
        For each story in batch:
-           a. git checkout -b story-<id>-#<issue>
-           b. 更新 `.opencode/AGENTS.md` 中的「当前任务」
-           c. git commit && push
-           d. git worktree add ../wt-<id>
-           e. git checkout main
+           a. 调用 worktree_create --issue <issue> --story <id>
+           b. 确认返回独立工作目录与分支
+           c. 在新 worktree 中更新 `.opencode/AGENTS.md` 的「当前任务」
+           d. 在新 worktree 提交并推送
     
     3. 等待完成
-       - 用户在各 worktree 终端启动 OpenCode
+       - 用户在各 worktree 终端启动 OpenCode（独立 session）
        - 新实例读取 `.opencode/AGENTS.md` 认领任务
        - 完成后创建 PR
     
@@ -69,6 +68,11 @@ For each batch:
     
     6. 下一批次
 ```
+
+## 上下文隔离规则（强制）
+
+- 主会话不得直接修改业务代码，只能编排/审核/决策。
+- 若 `worktree_create` 不可用，流程必须 `BLOCK`，不得降级为在主会话直接开发。
 
 ## 人类确认点
 

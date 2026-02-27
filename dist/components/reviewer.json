@@ -1,7 +1,7 @@
 {
   "name": "reviewer",
   "versions": {
-    "1.2.0": {
+    "1.2.1": {
       "name": "reviewer",
       "type": "ocx:agent",
       "description": "Gate Review Agent，检查 PR 质量（Commit 格式、文件白名单、测试、禁止项）",
@@ -28,6 +28,6 @@
     }
   },
   "dist-tags": {
-    "latest": "1.2.0"
+    "latest": "1.2.1"
   }
 }

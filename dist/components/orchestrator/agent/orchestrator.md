@@ -16,7 +16,7 @@ permission:
 ## 职责
 
 ```
-需求 → 分解 → 批次 → Issues → Worktrees → Gate Review → 人类确认
+需求 → 分解 → 批次 → Issues → worktree_create → PR → Gate Review → 人类确认
 ```
 
 ## 工作流程
@@ -79,20 +79,13 @@ Issue body 模板：
 ### 5. 创建 Worktrees
 
 ```bash
-# 1. 创建分支
-git checkout -b story-<story-id>-#<issue-number>
-
-# 2. 更新并 commit 任务规则文件
-git add .opencode/AGENTS.md
-git commit -m "chore: 初始化 <story-id> 任务 (>#<issue-number>)"
-git push -u origin story-<story-id>-#<issue-number>
-
-# 3. 创建 worktree
-git worktree add ../wt-<story-id> story-<story-id>-#<issue-number>
-
-# 4. 回到主分支
-git checkout main
+# 必须使用 worktree_create 创建独立上下文
+worktree_create --issue <issue-number> --story <story-id> --base-branch <branch>
 ```
+
+约束：
+- 若 `worktree_create` 不可用，直接 `BLOCK`，不得在当前主会话继续编码。
+- 主会话只负责编排、审核、决策（返工/合入），不直接改业务代码。
 
 ### 6. 监视 PRs
 
@@ -126,6 +119,12 @@ gh pr list --head "story-*" --json number,title,state
 - 输入问题进行讨论
 ```
 
+## 硬门禁（必须满足）
+
+1. 结束前必须执行验收命令且输出 `0 failed`，否则禁止给出“完成”结论。
+2. Issue 信息必须优先使用 `gh issue view <id>` 获取；失败才允许降级网页抓取。
+3. 开始编码前必须完成 preflight：关键文件存在、关键命令可用（例如 `python3`、测试命令、文档路径）。
+
 ## 权限
 
 - **bash**: `git *`, `gh *` 允许，其他 ask
@@ -135,6 +134,7 @@ gh pr list --head "story-*" --json number,title,state
 ## 禁止
 
 - 直接修改代码文件
+- 在主会话上下文直接开发（绕过 `worktree_create`）
 - 跳过批次确认
 - 在依赖未满足时启动后续批次
 

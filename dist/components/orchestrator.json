@@ -1,7 +1,7 @@
 {
   "name": "orchestrator",
   "versions": {
-    "1.2.0": {
+    "1.2.1": {
       "name": "orchestrator",
       "type": "ocx:agent",
       "description": "任务分解与批次编排 Agent，管理 Worktree + Issue + Gate 工作流",
@@ -31,6 +31,6 @@
     }
   },
   "dist-tags": {
-    "latest": "1.2.0"
+    "latest": "1.2.1"
   }
 }
