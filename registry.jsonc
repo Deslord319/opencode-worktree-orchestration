@@ -2,7 +2,7 @@
 	"$schema": "https://ocx.kdco.dev/schemas/registry.json",
 	"name": "Worktree Orchestration",
 	"namespace": "wto",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"author": "liuxilong",
 	"description": "Orchestrator Agent + Worktree + Issue + Gate 编排配置，支持多批次并行开发",
 

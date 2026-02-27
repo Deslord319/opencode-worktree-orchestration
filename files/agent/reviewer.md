@@ -20,6 +20,16 @@ Gate Review Agent，检查 PR 质量。
 
 ## Gate 检查项
 
+### 0. 上下文来源检查（新增）
+
+```bash
+gh pr view <pr-number> --json headRefName,commits
+```
+
+期望：
+- PR 来自 `worktree_create` 创建的 story 分支
+- 主会话无直接业务代码提交
+
 ### 1. Commit Message 格式
 
 ```bash
@@ -43,7 +53,7 @@ gh pr diff <pr-number> --name-only
 <test-command>
 ```
 
-期望：所有测试通过，0 failed，0 skipped。
+期望：所有测试通过，`0 failed`。
 
 ### 4. 禁止项扫描
 
@@ -66,6 +76,7 @@ rg -n "<forbidden-patterns>" <scope>
 
 | Check         | Status | Note    |
 | ------------- | ------ | ------- |
+| Context Source| ✅/❌  | ...     |
 | Commit Format | ✅/❌  | ...     |
 | Allowed Files | ✅/❌  | ...     |
 | Tests Pass    | ✅/❌  | ...     |
@@ -92,3 +103,4 @@ rg -n "<forbidden-patterns>" <scope>
 - 只检查，不修改任何文件
 - 从 `.opencode/AGENTS.md` 读取项目特定的测试命令和禁止模式
 - 不确定时倾向 BLOCK，交给人工判断
+- 若测试非 `0 failed`，一律 BLOCK，不得给 PASS。

@@ -1,7 +1,7 @@
 {
   "name": "full",
   "versions": {
-    "1.2.0": {
+    "1.2.1": {
       "name": "full",
       "type": "ocx:bundle",
       "description": "完整编排配置，包含 orchestrator + reviewer + batch + claim",
@@ -15,6 +15,6 @@
     }
   },
   "dist-tags": {
-    "latest": "1.2.0"
+    "latest": "1.2.1"
   }
 }

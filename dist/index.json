@@ -1,7 +1,7 @@
 {
   "name": "Worktree Orchestration",
   "namespace": "wto",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "liuxilong",
   "opencode": "1.0.0",
   "ocx": "1.0.16",
