@@ -39,7 +39,7 @@ gh pr diff <pr-number> --name-only
 ### 3. 测试通过
 
 ```bash
-# 读取 .opencode/AGENTS.md（或 AGENTS.md）获取测试命令
+# 读取 .opencode/AGENTS.md 获取测试命令
 <test-command>
 ```
 
@@ -48,7 +48,7 @@ gh pr diff <pr-number> --name-only
 ### 4. 禁止项扫描
 
 ```bash
-# 读取 .opencode/AGENTS.md（或 AGENTS.md）获取禁止模式
+# 读取 .opencode/AGENTS.md 获取禁止模式
 rg -n "<forbidden-patterns>" <scope>
 ```
 
@@ -90,5 +90,5 @@ rg -n "<forbidden-patterns>" <scope>
 ## 注意
 
 - 只检查，不修改任何文件
-- 从 `.opencode/AGENTS.md`（或 `AGENTS.md`）读取项目特定的测试命令和禁止模式
+- 从 `.opencode/AGENTS.md` 读取项目特定的测试命令和禁止模式
 - 不确定时倾向 BLOCK，交给人工判断
