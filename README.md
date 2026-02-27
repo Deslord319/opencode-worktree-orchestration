@@ -29,10 +29,13 @@ curl -fsSL https://ocx.kdco.dev/install.sh | sh
 ### 方式 1: OCX 安装（推荐）
 
 ```bash
-# 1. 添加 Registry
-ocx registry add https://github.com/Deslord319/opencode-worktree-orchestration --name wto
+# 1. 初始化 OCX（首次）
+ocx init
 
-# 2. 安装完整配置
+# 2. 添加 Registry
+ocx registry add https://raw.githubusercontent.com/Deslord319/opencode-worktree-orchestration/main/dist --name wto
+
+# 3. 安装完整配置
 ocx add wto/full
 
 # 或单独安装组件
@@ -226,13 +229,11 @@ ruff check backend/
 git clone https://github.com/Deslord319/opencode-worktree-orchestration.git
 cd opencode-worktree-orchestration
 
-# 验证 Registry
+# 验证并构建
 ocx build . --out dist
 
-# 本地测试
-cd /path/to/test-project
-ocx registry add /path/to/opencode-worktree-orchestration --name wto-local
-ocx add wto-local/full
+# 修改后推送，dist/ 会自动更新
+git add -A && git commit -m "update" && git push
 ```
 
 ## License
