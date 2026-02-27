@@ -2,12 +2,18 @@
 	"$schema": "https://ocx.kdco.dev/schemas/registry.json",
 	"name": "Worktree Orchestration",
 	"namespace": "wto",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"author": "liuxilong",
 	"description": "Orchestrator Agent + Worktree + Issue + Gate 编排配置，支持多批次并行开发",
 
 	"opencode": "1.0.0",
 	"ocx": "1.0.16",
+
+	"postInstall": [
+		"# OpenCode 需要 opencode.jsonc 在项目根目录",
+		"cp .opencode/opencode.jsonc opencode.jsonc",
+		"echo '✅ 已创建 opencode.jsonc，请重启 OpenCode 并按 Tab 键选择 orchestrator'"
+	],
 
 	"components": [
 		{
@@ -16,7 +22,6 @@
 			"description": "任务分解与批次编排 Agent，管理 Worktree + Issue + Gate 工作流",
 			"files": ["agent/orchestrator.md"],
 			"opencode": {
-				"configTarget": "opencode.jsonc",
 				"instructions": [".opencode/skills/batch/SKILL.md", ".opencode/skills/claim/SKILL.md"],
 				"agent": {
 					"orchestrator": {
@@ -39,7 +44,6 @@
 			"description": "Gate Review Agent，检查 PR 质量（Commit 格式、文件白名单、测试、禁止项）",
 			"files": ["agent/reviewer.md"],
 			"opencode": {
-				"configTarget": "opencode.jsonc",
 				"agent": {
 					"reviewer": {
 						"mode": "subagent",
@@ -62,7 +66,7 @@
 			"description": "批次执行规约，定义多 Story 批次执行的标准流程",
 			"files": ["skills/batch/SKILL.md"],
 			"opencode": {
-				"configTarget": "opencode.jsonc"
+				"instructions": [".opencode/skills/batch/SKILL.md"]
 			}
 		},
 		{
@@ -71,7 +75,7 @@
 			"description": "任务认领规约，定义新 Worktree 实例如何认领任务",
 			"files": ["skills/claim/SKILL.md"],
 			"opencode": {
-				"configTarget": "opencode.jsonc"
+				"instructions": [".opencode/skills/claim/SKILL.md"]
 			}
 		},
 		{
@@ -80,9 +84,11 @@
 			"description": "完整编排配置，包含 orchestrator + reviewer + batch + claim",
 			"files": [],
 			"dependencies": ["orchestrator", "reviewer", "batch", "claim"],
-			"opencode": {
-				"configTarget": "opencode.jsonc"
-			}
+			"postInstall": [
+				"echo '⚠️  OpenCode 需要 opencode.jsonc 在项目根目录'",
+				"cp .opencode/opencode.jsonc opencode.jsonc",
+				"echo '✅ 已创建 opencode.jsonc，请重启 OpenCode 并按 Tab 键选择 orchestrator'"
+			]
 		}
 	]
 }
