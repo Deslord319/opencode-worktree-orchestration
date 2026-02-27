@@ -11,7 +11,8 @@
         "reviewer",
         "batch",
         "claim"
-      ]
+      ],
+      "opencode": {}
     }
   },
   "dist-tags": {

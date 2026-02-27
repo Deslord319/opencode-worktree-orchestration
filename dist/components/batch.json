@@ -8,7 +8,8 @@
       "files": [
         "skills/batch/SKILL.md"
       ],
-      "dependencies": []
+      "dependencies": [],
+      "opencode": {}
     }
   },
   "dist-tags": {
