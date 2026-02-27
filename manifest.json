@@ -1,19 +1,20 @@
 {
   "name": "opencode-worktree-orchestration",
-  "version": "1.0.0",
-  "description": "Plan Agent + Worktree + Issue + Gate 编排配置",
+  "version": "1.0.1",
+  "description": "Orchestrator Agent + Worktree + Issue + Gate 编排配置，支持多批次并行开发",
   "author": "liuxilong",
   "license": "MIT",
   "files": [
-    ".opencode/agents/plan.md",
+    ".opencode/agents/orchestrator.md",
     ".opencode/agents/reviewer.md",
     ".opencode/rules/batch.md",
     ".opencode/rules/claim.md",
-    ".opencode/opencode.json",
+    ".opencode/opencode.jsonc",
     "AGENTS.md"
   ],
   "postInstall": [
     "请编辑 AGENTS.md 的「文档索引」指向你的项目文档",
-    "请编辑 AGENTS.md 的「常用命令」添加测试和 Lint 命令"
+    "请编辑 AGENTS.md 的「常用命令」添加测试和 Lint 命令",
+    "请编辑 AGENTS.md 的「禁止项」添加项目特定的禁止模式"
   ]
 }

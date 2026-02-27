@@ -40,7 +40,7 @@ ocx add <registry>/opencode-worktree-orchestration
 ├── rules/
 │   ├── batch.md         # 批次执行规约
 │   └── claim.md         # 任务认领规约
-└── opencode.json        # 配置入口
+└── opencode.jsonc       # 配置入口
 ```
 
 ### AGENTS.md
